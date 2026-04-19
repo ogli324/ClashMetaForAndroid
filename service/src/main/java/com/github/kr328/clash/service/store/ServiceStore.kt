@@ -65,4 +65,14 @@ class ServiceStore(context: Context) {
         key = "dynamic_notification",
         defaultValue = true
     )
+
+    var liteHttpPort by store.int(
+        key = "lite_http_port",
+        defaultValue = 7890
+    )
+
+    var liteSocksPort by store.int(
+        key = "lite_socks_port",
+        defaultValue = 7891
+    )
 }

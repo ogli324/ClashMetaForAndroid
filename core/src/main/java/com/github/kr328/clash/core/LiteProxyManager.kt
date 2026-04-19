@@ -42,20 +42,20 @@ object LiteProxyManager {
 
     fun updateAddresses(httpAddr: String?, socksAddr: String?) {
         if (httpAddr != null) {
-            val parts = httpAddr.split(":")
-            if (parts.size == 2) {
-                httpAddress = parts[0]
-                httpPort = parts[1].toIntOrNull() ?: 7890
+            val lastColon = httpAddr.lastIndexOf(':')
+            if (lastColon > 0) {
+                httpAddress = httpAddr.substring(0, lastColon)
+                httpPort = httpAddr.substring(lastColon + 1).toIntOrNull() ?: 7890
             }
         } else {
             httpAddress = null
         }
 
         if (socksAddr != null) {
-            val parts = socksAddr.split(":")
-            if (parts.size == 2) {
-                socksAddress = parts[0]
-                socksPort = parts[1].toIntOrNull() ?: 7891
+            val lastColon = socksAddr.lastIndexOf(':')
+            if (lastColon > 0) {
+                socksAddress = socksAddr.substring(0, lastColon)
+                socksPort = socksAddr.substring(lastColon + 1).toIntOrNull() ?: 7891
             }
         } else {
             socksAddress = null

@@ -33,7 +33,7 @@ func StopSocks() {
 
 func stopSocksLocked() {
 	if socksListener != nil {
-		socksListener.Close()
+		_ = socksListener.Close()
 	}
 
 	socksListener = nil

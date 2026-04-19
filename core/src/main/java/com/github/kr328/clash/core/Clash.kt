@@ -98,6 +98,14 @@ object Clash {
         Bridge.nativeStopHttp()
     }
 
+    fun startSocks(listenAt: String): String? {
+        return Bridge.nativeStartSocks(listenAt)
+    }
+
+    fun stopSocks() {
+        Bridge.nativeStopSocks()
+    }
+
     fun queryGroupNames(excludeNotSelectable: Boolean): List<String> {
         val names = Json.Default.decodeFromString(
             JsonArray.serializer(),

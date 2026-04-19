@@ -158,6 +158,28 @@ Java_com_github_kr328_clash_core_bridge_Bridge_nativeStopHttp(JNIEnv *env, jobje
 }
 
 JNIEXPORT jstring JNICALL
+Java_com_github_kr328_clash_core_bridge_Bridge_nativeStartSocks(JNIEnv *env, jobject thiz,
+                                                                jstring listen_at) {
+    TRACE_METHOD();
+
+    scoped_string _listen_at = get_string(listen_at);
+
+    scoped_string listened = startSocks(_listen_at);
+
+    if (listened == NULL)
+        return NULL;
+
+    return new_string(listened);
+}
+
+JNIEXPORT void JNICALL
+Java_com_github_kr328_clash_core_bridge_Bridge_nativeStopSocks(JNIEnv *env, jobject thiz) {
+    TRACE_METHOD();
+
+    stopSocks();
+}
+
+JNIEXPORT jstring JNICALL
 Java_com_github_kr328_clash_core_bridge_Bridge_nativeQueryGroupNames(JNIEnv *env, jobject thiz,
                                                                      jboolean exclude_not_selectable) {
     TRACE_METHOD();

@@ -23,3 +23,20 @@ func startHttp(listenAt C.c_string) *C.char {
 func stopHttp() {
 	proxy.Stop()
 }
+
+//export startSocks
+func startSocks(listenAt C.c_string) *C.char {
+	l := C.GoString(listenAt)
+
+	listen, err := proxy.StartSocks(l)
+	if err != nil {
+		return nil
+	}
+
+	return C.CString(listen)
+}
+
+//export stopSocks
+func stopSocks() {
+	proxy.StopSocks()
+}
